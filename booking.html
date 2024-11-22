@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking</title>
+  <link rel="stylesheet" href="./assets/css/booking.css">
+  <link rel="icon" href="./img/0F0718B0-82B9-40C6-90ED-F8282C09CFDD.png">
+</head>
+<body>
+  <div class="booking__container">
+    <header class="booking__header">
+      <h1>Your Booking</h1>
+    </header>
+    
+    <div class="booking__content">
+      <!-- Booking Details (Left) -->
+      <div class="booking__details">
+        <div class="trip__info">
+          <img id="tripImage" src="" alt="Trip Image" class="trip__image"/>
+          <h2 id="tripName" class="trip__name"></h2>
+          <p id="tripPrice" class="trip__price"></p>
+        </div>
+      </div>
+      
+      <div class="right__section">
+        <!-- Contact Form -->
+        <div class="contact__form">
+          <h3>Enter Your Contact Details</h3>
+          <form id="contactForm" novalidate>
+            <input type="text" id="userName" placeholder="Full Name" required /><br>
+            <span id="nameError" class="error"></span> 
+            <input type="email" id="userEmail" placeholder="Email Address" required /><br>
+            <span id="emailError" class="error"></span> <br>
+            <input type="tel" id="userPhone" placeholder="Phone Number (11 digits)" required maxlength="11" pattern="^\d{11}$" />
+            <span id="phoneError" class="error"></span> <br>
+            <button type="submit" class="btn">Proceed to Payment</button>
+          </form>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment__section" id="paymentSection" style="display: none;">
+          <h3>Booking Summary</h3>
+          <div class="payment__details">
+            <p>Total: <span id="totalAmount"></span></p>
+          </div>
+
+          <!-- Payment Form -->
+          <div class="payment-form" id="paymentForm">
+            <input type="text" id="cardNumber" placeholder="Credit Card Number (16 digits)" maxlength="16" required />
+            <span id="cardNumberError" class="error"></span>
+          
+            <input type="month" id="expiryDate" required />
+            <span id="expiryDateError" class="error"></span>
+          
+            <input type="text" id="cvv" placeholder="CVV" maxlength="3" required />
+            <span id="cvvError" class="error"></span>
+          
+            <button id="payButton" class="btn">Pay Now</button>
+          </div>
+          
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-container" id="loadingContainer">
+          <div class="loading-spinner"></div>
+          <p>Processing Payment...</p>
+        </div>
+
+        <!-- Success Message -->
+        <div id="paymentSuccess" style="display: none; text-align: center;">
+          <h2>Payment Successful!</h2>
+          <p>Thank you for your booking. You will receive a confirmation email shortly.</p>
+          <hr>
+          <div class="booking-detailss">
+            <p><strong>Booking Details:</strong></p>
+            <p id="bookingDetails"></p>
+            <p id="bookingDate"></p>
+            <p><strong>Status:</strong> <span id="bookingStatus" style="color: red;">Pending</span></p>
+          </div>
+          <hr>
+          <a href="index.html" class="btn">Back to Homepage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tripName = urlParams.get('name');
+      const tripPrice = urlParams.get('price');
+      const tripImage = urlParams.get('image');
+  
+      if (tripName && tripPrice && tripImage) {
+        document.getElementById('tripName').textContent = tripName;
+        document.getElementById('tripPrice').innerHTML = `Price: <b>${tripPrice}</b>`;
+        document.getElementById('tripImage').src = tripImage;
+        document.getElementById('tripImage').alt = tripName;
+        document.getElementById('totalAmount').textContent = tripPrice;
+      } else {
+        alert("No trip details found.");
+      }
+    };
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('phoneError').textContent = '';
+
+      const name = document.getElementById('userName').value;
+      const email = document.getElementById('userEmail').value;
+      const phone = document.getElementById('userPhone').value;
+
+      let isValid = true;
+
+      // Email validation: Only @gmail.com or @yahoo.com allowed
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
+      if (!email || !emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Email must be @gmail.com or @yahoo.com';
+        isValid = false;
+      }
+      if (!name) {
+        document.getElementById('nameError').textContent = 'Name is required.';
+        isValid = false;
+      }
+      if (!phone || phone.length !== 11) {
+        document.getElementById('phoneError').textContent = 'Phone number must be exactly 11 digits.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        document.getElementById('paymentSection').style.display = 'block'; 
+        document.querySelector('.contact__form').style.display = 'none'; 
+      }
+    });
+
+    document.getElementById('payButton').addEventListener('click', function() {
+        // Validate credit card number (16 digits)
+        const cardNumber = document.getElementById('cardNumber').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+        const cvv = document.getElementById('cvv').value;
+      
+        let isValid = true;
+      
+        // Validate Credit Card (16 digits)
+        const cardNumberRegex = /^\d{16}$/;
+        if (!cardNumber || !cardNumberRegex.test(cardNumber)) {
+          document.getElementById('cardNumberError').textContent = 'Card number must be 16 digits.';
+          isValid = false;
+        }
+      
+        // Validate Expiry Date (MM/YY format)
+        const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!expiryDate) {
+          document.getElementById('expiryDateError').textContent = 'Expiry date is required.';
+          isValid = false;
+        } else {
+          // Check if expiry date is in the future
+          const currentDate = new Date();
+          const expiryDateObj = new Date(expiryDate + '-01'); // 'YYYY-MM-01' to ensure it's a valid date
+      
+          if (expiryDateObj < currentDate) {
+            document.getElementById('expiryDateError').textContent = 'Expiry date must be in the future.';
+            isValid = false;
+          }
+        }
+      
+        // Validate CVV (3 digits)
+        const cvvRegex = /^\d{3}$/;
+        if (!cvv || !cvvRegex.test(cvv)) {
+          document.getElementById('cvvError').textContent = 'CVV must be 3 digits.';
+          isValid = false;
+        }
+      
+        if (isValid) {
+          // Show loading spinner and processing payment message
+          document.getElementById('loadingContainer').style.display = 'block';
+      
+          setTimeout(function() {
+            // Hide payment form and show success message
+            document.getElementById('paymentSection').style.display = 'none';
+            document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('paymentSuccess').style.display = 'block';
+      
+            document.getElementById('bookingDetails').textContent = document.getElementById('tripName').textContent;
+            document.getElementById('bookingDate').textContent = new Date().toLocaleDateString();
+      
+            const bookingStatusElement = document.getElementById('bookingStatus');
+            bookingStatusElement.style.color = 'red';
+            bookingStatusElement.textContent = 'Pending';
+          }, 4000); 
+        }
+      });
+      
+      
+  </script>
+</body>
+</html>
