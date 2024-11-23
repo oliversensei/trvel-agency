@@ -12,67 +12,125 @@
         <h1>Gallery</h1>
         <a href="index.html" class="back-btn">Back to Home</a>
     </header>
-    <section class="gallery__container">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/47/b0/5c/photo5jpg.jpg?w=1000&h=-1&s=1" alt="Gallery Image 1">
-        <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/14/c3/70/38.jpg" alt="Gallery Image 2">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f7/23/bd/lrm-export-17611061795749.jpg?w=1000&h=-1&s=1" alt="Gallery Image 3">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/7e/10/pic-3.jpg?w=900&h=500&s=1" alt="Gallery Image 4">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/fe/13/31/photo2jpg.jpg?w=900&h=500&s=1" alt="Gallery Image 5">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/1a/33/24/view-from-the-rocky-part.jpg?w=900&h=500&s=1" alt="Gallery Image 6">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/58/8c/bb/panorama-sight-in-direction.jpg?w=900&h=500&s=1" alt="Gallery Image 7">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/73/97/f9/20161025-114916-largejpg.jpg?w=900&h=-1&s=1" alt="Gallery Image 8">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/a8/8b/0b/dako-island.jpg?w=800&h=400&s=1" alt="Gallery Image 9">
-        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/03/7a/77/photo1jpg.jpg?w=900&h=500&s=1" alt="Gallery Image 10">
+    <section class="gallery-container">
+        <div class="gallery-section">
+            <h2>Dinagat Island</h2>
+            <div class="gallery-images">
+                <img src="./img/img-1.JPG" alt="Gallery Image 1">
+                <img src="./img/img-2.JPG" alt="Gallery Image 2">
+                <img src="./img/img-3.JPG" alt="Gallery Image 3">
+                <img src="./img/img-4.JPG" alt="Gallery Image 4">
+                <img src="./img/img-5.JPG" alt="Gallery Image 5">
+                <img src="./img/img-6.JPG" alt="Gallery Image 6">
+                <img src="./img/img-7.JPG" alt="Gallery Image 7">
+                <img src="./img/img-8.JPG" alt="Gallery Image 8">
+                <img src="./img/img-9.JPG" alt="Gallery Image 9">
+                <img src="./img/img-10.JPG" alt="Gallery Image 10">
+                <img src="./img/img-11.JPG" alt="Gallery Image 11">
+            </div>
+        </div>
+        <div class="gallery-section">
+            <h2>Siargao Island</h2>
+            <div class="gallery-images">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/47/b0/5c/photo5jpg.jpg?w=1000&h=-1&s=1" alt="Gallery Image 12">
+                <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/14/c3/70/38.jpg" alt="Gallery Image 13">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/f7/23/bd/lrm-export-17611061795749.jpg?w=1000&h=-1&s=1" alt="Gallery Image 14">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/0a/7e/10/pic-3.jpg?w=900&h=500&s=1" alt="Gallery Image 15">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/fe/13/31/photo2jpg.jpg?w=900&h=500&s=1" alt="Gallery Image 16">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/1a/33/24/view-from-the-rocky-part.jpg?w=900&h=500&s=1" alt="Gallery Image 17">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/58/8c/bb/panorama-sight-in-direction.jpg?w=900&h=500&s=1" alt="Gallery Image 18">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/73/97/f9/20161025-114916-largejpg.jpg?w=900&h=-1&s=1" alt="Gallery Image 19">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/a8/8b/0b/dako-island.jpg?w=800&h=400&s=1" alt="Gallery Image 20">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/03/7a/77/photo1jpg.jpg?w=900&h=500&s=1" alt="Gallery Image 21">
+            </div>
+        </div>
     </section>
 
-    <div class="modal" id="imageModal">
-        <button class="close" id="closeModal">&times;</button> 
-        <div class="controls">
-        <button class="prev" id="prevImage">&lt;</button>
-        <img src="" alt="Modal Image" id="modalImage">
-        <button class="next" id="nextImage">&gt;</button>
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-controls">
+            <button id="prevBtn">❮</button>
+            <button id="nextBtn">❯</button>
         </div>
     </div>
-  
+
     <script>
-    const images = document.querySelectorAll('.gallery__container img');
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const prevImage = document.getElementById('prevImage');
-    const nextImage = document.getElementById('nextImage');
-    const closeModal = document.getElementById('closeModal');
-
-
-    let currentImageIndex = 0;
-
-    images.forEach((img, index) => {
-        img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImage.src = img.src;
-        currentImageIndex = index;
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+    
+        const images = document.querySelectorAll('.gallery-images img');
+        let currentImageIndex;
+    
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImage.src = img.src;
+                currentImageIndex = index;
+            });
         });
-    });
-
-    prevImage.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        modalImage.src = images[currentImageIndex].src;
-    });
-
-    nextImage.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        modalImage.src = images[currentImageIndex].src;
-    });
-
-    modal.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    closeModal.addEventListener('click', (e) => {
-        e.stopPropagation();
-        modal.style.display = 'none';
-    });
+    
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            modalImage.src = images[currentImageIndex].src;
+        });
+    
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            modalImage.src = images[currentImageIndex].src;
+        });
+    
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        window.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') {
+                    prevBtn.click(); 
+                } else if (e.key === 'ArrowRight') { 
+                    nextBtn.click(); 
+                }
+            }
+        });
+    
+        const modalContainer = document.querySelector('.modal-content');
+        let zoomLevel = 1;
+    
+        function zoomImage(event) {
+            if (event.deltaY < 0) {
+                zoomLevel += 0.1; 
+            } else {
+                zoomLevel = Math.max(1, zoomLevel - 0.1); 
+            }
+    
+            modalImage.style.transform = `scale(${zoomLevel})`;
+        }
+    
+        modalImage.addEventListener('click', () => {
+            if (zoomLevel === 1) {
+                zoomLevel = 1.5; 
+            } else {
+                zoomLevel = 1; 
+            }
+            
+            modalImage.style.transform = `scale(${zoomLevel})`;
+        });
+    
+        modalContainer.addEventListener('wheel', zoomImage);
+    
     </script>
+    
+   
 </body>
 </html>
