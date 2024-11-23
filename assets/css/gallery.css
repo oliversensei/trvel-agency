@@ -3,7 +3,6 @@
   --primary-color-dark: #2f73d9;
   --secondary-color: #fafcff;
   --text-dark: #0d213f;
-  --text-light: #767268;
   --extra-light: #ffffff;
   --max-width: 1200px;
 }
@@ -18,7 +17,6 @@ header {
   text-align: center;
   padding: 20px;
   background-color: var(--secondary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +33,6 @@ header .back-btn {
   padding: 10px 20px;
   background-color: var(--primary-color);
   color: var(--extra-light);
-  border: none;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
@@ -44,103 +41,168 @@ header .back-btn:hover {
   background-color: var(--primary-color-dark);
 }
 
-.gallery__container {
+.gallery-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+.gallery-section {
+  background: var(--secondary-color);
+  border-radius: 8px;
   padding: 20px;
 }
 
-.gallery__container img {
+.gallery-section h2 {
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.gallery-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.gallery-images img {
   width: 100%;
-  height: 20vh;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.gallery__container img:hover {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+.gallery-images img:hover {
+  transform: scale(1.05);
 }
 
-/* Modal Styles */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
   justify-content: center;
+  align-items: center;
 }
 
-.modal img {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 8px;
+.modal-content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+  cursor: zoom-in; 
+  transition: transform 0.3s ease;
 }
 
-.modal .controls {
+.zoomed {
+  transform: scale(1.5);
+}
+
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.modal-controls {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 
-.modal .prev,
-.modal .next {
+.modal-controls button {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
   font-size: 2rem;
-  color: white;
   cursor: pointer;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
   border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.modal .close {
+.modal-controls button:hover {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+
+.close {
   position: absolute;
   top: 20px;
   right: 20px;
+  color: var(--secondary-color);
   font-size: 2rem;
-  color: white;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  z-index: 1;
+  background-color: transparent;
+  padding: 10px;
   border-radius: 50%;
-  padding: 5px 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.modal .close:hover {
+.close:hover {
   background-color: rgba(255, 0, 0, 0.7);
-  transition: 0.5s ease;
 }
 
 
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
+  .gallery-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
   }
 
-  .gallery__container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  .back-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .gallery-images {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .modal-controls button {
+    font-size: 1.5rem;
+  }
+
+  .close {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  header h1 {
-    font-size: 1.2rem;
+  header {
+    flex-direction: column;
   }
 
-  .gallery__container {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  .back-btn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .gallery-images {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .modal-controls button {
+    font-size: 1.25rem;
+  }
+
+  .close {
+    font-size: 1.25rem;
   }
 }
