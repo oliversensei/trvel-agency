@@ -137,45 +137,45 @@
         </p>
         <div class="trip__grid">
           <div class="trip__card">
-            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/14/c3/70/36.jpg" alt="Siargao Underwater Scooter Experience" />
+            <img src="https://triptheislands.com/wp-content/uploads/2014/09/Bitaog-Beach-Basilisa-Dinagat-Island-near-Surigao-Butuan.jpg" alt="Dinagat Island" />
             <div class="trip__details">
-              <p>Siargao Underwater Scooter Experience</p>
+              <p>Dinagat Island</p>
               <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
               <div class="booking__price">
-                <div class="price">From <del>₱789.78</del> <b>₱394.59</b> <br><span>per adult</span></div>
+                <div class="price">From ₱8,800 <br><span></span></div>
                 <!-- Pass trip details via data attributes -->
                 <button 
-                  onclick="window.location.href='booking.html?name=Siargao%20Underwater%20Scooter%20Experience&price=₱394.59&image=https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/14/c3/70/36.jpg'" 
+                  onclick="window.location.href='booking.html?name=Dinagat%20Island&price=₱8,800&image=https://triptheislands.com/wp-content/uploads/2014/09/Bitaog-Beach-Basilisa-Dinagat-Island-near-Surigao-Butuan.jpg'" 
                   class="book__now">Book Now</button>
               </div>
             </div>
           </div>
     
           <div class="trip__card">
-            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/6e/14/94.jpg" alt="Siargao Trio Islands All Inclusive Day Tour" />
+            <img src="https://th.bing.com/th/id/OIP.q9bA6saGTEESNSvXdz2QqwHaE8?rs=1&pid=ImgDetMain" alt="Siargao Island" />
             <div class="trip__details">
-              <p>Siargao Trio Islands All Inclusive Day Tour</p>
+              <p>Siargao Island</p>
               <div class="rating"><i class="ri-star-fill"></i> 4.5</div>
               <div class="booking__price">
-                <div class="price">From ₱3,162 <br><span>per adult</span></div>
+                <div class="price">From ₱9,500 <br><span></span></div>
                 <!-- Pass trip details via data attributes -->
                 <button 
-                  onclick="window.location.href='booking.html?name=Siargao%20Trio%20Islands%20All%20Inclusive%20Day%20Tour&price=₱3,162&image=https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/6e/14/94.jpg'" 
+                  onclick="window.location.href='booking.html?name=Siargao%20Island&price=₱9,500&image=https://th.bing.com/th/id/OIP.q9bA6saGTEESNSvXdz2QqwHaE8?rs=1&pid=ImgDetMain'" 
                   class="book__now">Book Now</button>
               </div>
             </div>
           </div>
     
           <div class="trip__card">
-            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/13/66/d7/59.jpg" alt="Siargao Private Inland Tour with Sugba Lagoon and Lunch" />
+            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/13/66/d7/59.jpg" alt="Siargao Private Island" />
             <div class="trip__details">
-              <p>Siargao Private Inland Tour with Sugba Lagoon and Lunch</p>
+              <p>Siargao Private Inland</p>
               <div class="rating"><i class="ri-star-fill"></i> 4.7</div>
               <div class="booking__price">
-                <div class="price">From ₱9,606.28 <br><span>per adult</span></div>
+                <div class="price">From ₱10,000 <br><span></span></div>
                 <!-- Pass trip details via data attributes -->
                 <button 
-                  onclick="window.location.href='booking.html?name=Siargao%20Private%20Inland%20Tour%20with%20Sugba%20Lagoon%20and%20Lunch&price=₱9,606.28&image=https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/13/66/d7/59.jpg'" 
+                  onclick="window.location.href='booking.html?name=Siargao%20Private%20Island&price=10,000&image=https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/13/66/d7/59.jpg'" 
                   class="book__now">Book Now</button>
               </div>
             </div>
@@ -188,7 +188,6 @@
       </div>
     </section>
     
-
     <!-- Gallery -->
     <section id="gallery" class="gallary">
       <div class="section__container gallary__container">
@@ -271,6 +270,33 @@
       </div>
     </section>
 
+    <!-- Popup -->
+    <div id="terms-popup" class="terms-popup">
+      <div class="terms-popup-content">
+          <h2>Terms and Conditions</h2>
+          <p>1. Booking: Reservations require a deposit or full payment. Booking is confirmed when payment is received.</p>
+          <p>2. Pricing: Prices include accommodations, meals, transport, and activities listed. Personal expenses and insurance are not covered.</p>
+          <p>3. Cancellations: Fees depend on when you cancel.</p>
+          <p>4. Itinerary Changes: The provider can change activities or accommodations due to weather or safety. Guests will be informed of any major changes.</p>
+          <p>5. Liability: The provider isn’t responsible for injuries, losses, or personal issues. Travel insurance is recommended.</p>
+          <p>6. Respecting Culture and Nature: Follow local customs and environmental guidelines to protect Surigao Del Norte.</p>
+          <p>7. Agreement: By booking, guests agree to these terms.</p>
+
+          <label>
+              <input type="checkbox" id="termsCheckbox"> I accept all terms and conditions
+          </label>
+
+          <div class="buttons">
+              <button id="acceptButton" class="accept-btn">Accept</button>
+              <!-- <button id="declineButton" class="decline-btn">Decline</button> -->
+          </div>
+
+          <div id="acceptStatus" class="accept-status">You have accepted the terms.</div>
+          
+          <div id="errorMessage" class="error-message" style="display: none;">You must accept the terms and conditions to proceed.</div>
+      </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast" class="toast">
       <span>Thank you! Your message has been sent successfully.</span>
@@ -311,7 +337,6 @@
           <h4>Contact Us</h4>
           <p>
             <span>Address:</span> Area G, Dasma
-            United States
           </p>
           <p><span>Email:</span> kylelubayan@gmail.com</p>
           <p><span>Phone:</span> +63 962 289 1752</p>
@@ -320,8 +345,46 @@
       <div class="footer__bar">
         Copyright ©2024 Developed by Kyle Lubayan | All Rights Reserved.
       </div>
-    </footer>
+    </footer> 
 
     <script src="./main.js"></script>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('terms-popup').style.display = 'flex';
+            }, 1000);
+        };
+    
+        document.getElementById('termsCheckbox').addEventListener('change', function() {
+            var acceptStatus = document.getElementById('acceptStatus');
+            var errorMessage = document.getElementById('errorMessage');
+            
+            if (this.checked) {
+                acceptStatus.style.display = 'block';
+                errorMessage.style.display = 'none'; 
+            } else {
+                acceptStatus.style.display = 'none';
+            }
+        });
+    
+        document.getElementById('acceptButton').addEventListener('click', function() {
+            var termsCheckbox = document.getElementById('termsCheckbox');
+            var errorMessage = document.getElementById('errorMessage');
+            
+            if (!termsCheckbox.checked) {
+                errorMessage.style.display = 'block'; 
+            } else {
+                document.getElementById('termsCheckbox').checked = true;
+                document.getElementById('acceptStatus').style.display = 'block';
+                document.getElementById('terms-popup').style.display = 'none';
+                errorMessage.style.display = 'none'; 
+            }
+        });
+    
+        document.getElementById('declineButton').addEventListener('click', function() {
+            document.getElementById('terms-popup').style.display = 'none';
+        });
+    </script>
+  
   </body>
 </html>
